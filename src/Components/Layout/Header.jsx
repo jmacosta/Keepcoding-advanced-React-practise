@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/logo_horizontal.svg';
 import { UseAuth } from '../../pages/auth/context';
 import { ConfirmComponent } from '../sharedComponents/ConfirmComponent';
-import './header.css';
+import styles from './header.module.css';
 const Header = ({ className }) => {
   const { isLogged, onLogout } = UseAuth();
   const [confirm, setconfirmed] = useState(false);
@@ -14,8 +14,8 @@ const Header = ({ className }) => {
     setconfirmed(false);
   };
   return (
-    <header className={'header'}>
-      <div className='logo'>
+    <header className={styles.header}>
+      <div className={styles.logo}>
         <Link to='/adverts'>
           <img src={logo} />
         </Link>
@@ -29,7 +29,7 @@ const Header = ({ className }) => {
           <NavLink to='/adverts/new'>
             <li>Crear anuncio</li>
           </NavLink>
-          <li className='logout' onClick={confirmedLogout}>
+          <li className={styles.logout} onClick={confirmedLogout}>
             Logout
           </li>
         </ul>

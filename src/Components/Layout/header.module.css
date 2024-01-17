@@ -8,11 +8,11 @@
   width: 100%;
 }
 
-header nav {
+.header nav {
   display: flex;
   align-items: center;
 }
-header nav ul {
+.header nav ul {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

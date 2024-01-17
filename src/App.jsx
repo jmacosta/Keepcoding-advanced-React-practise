@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import './App.css';
+import styles from './app.module.css';
 import Layout from './Components/Layout/Layout';
 import { Error404 } from './pages/Error404';
 import AdvertPage from './pages/adverts/AdvertPage';

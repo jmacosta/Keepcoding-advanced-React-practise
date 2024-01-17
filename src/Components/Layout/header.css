@@ -1,0 +1,54 @@
+.logo {
+  max-width: 10rem;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 100%;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+}
+header nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.header li.logout {
+  border-radius: 100px;
+  padding: 1vh 2vw 1vh 2vw;
+  background-color: white;
+  border: solid var(--primary-color) 2px;
+  font-weight: 400;
+  font-size: larger;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition-duration: 0.4s;
+  text-decoration: none;
+}
+
+.header li:hover a {
+  color: white;
+}
+.header li {
+  color: var(--primary-color);
+  padding: 5px 10px;
+  transition-duration: 0.3s;
+}
+.header li:hover {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50px;
+}
+.active {
+  border-bottom: solid 2px var(--primary-color);
+}
+.active:hover {
+  border-bottom: solid 0px var(--primary-color);
+}

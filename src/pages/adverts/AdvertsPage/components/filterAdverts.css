@@ -1,0 +1,45 @@
+.filterBox {
+  width: 90%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+.filterTitle {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  font-weight: 700;
+  border-bottom: solid 1px var(--primary-color);
+}
+.filterContent {
+  display: flex;
+  gap: 10px;
+}
+input {
+  border: 0px;
+  border-bottom: 1px solid gray;
+}
+.tagsFilter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: stretch;
+  align-items: flex-start;
+}
+.priceFilter {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.priceFilter input {
+  width: 50%;
+  margin-left: 10px;
+  text-align: right;
+}
+.filterButton {
+  margin-bottom: 10px;
+  width: 70%;
+}

@@ -6,12 +6,12 @@ import { ConfirmComponent } from '../sharedComponents/ConfirmComponent';
 import styles from './header.module.css';
 const Header = ({ className }) => {
   const { isLogged, onLogout } = UseAuth();
-  const [confirm, setconfirmed] = useState(false);
+  const [confirm, setconfirm] = useState(false);
   const confirmedLogout = () => {
-    setconfirmed(true);
+    setconfirm(true);
   };
   const resetFunction = () => {
-    setconfirmed(false);
+    setconfirm(false);
   };
   return (
     <header className={styles.header}>

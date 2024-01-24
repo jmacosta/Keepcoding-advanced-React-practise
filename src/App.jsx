@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import styles from './app.module.css';
 import Layout from './Components/Layout/Layout';
+import './app.css';
 import { Error404 } from './pages/Error404';
 import AdvertPage from './pages/adverts/AdvertPage';
 import AdvertsPage from './pages/adverts/AdvertsPage';

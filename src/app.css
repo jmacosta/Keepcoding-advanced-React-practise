@@ -31,6 +31,13 @@ footer {
   height: 1rem;
   background-color: var(--primary-color);
 }
+
+main {
+  grid-area: main;
+}
+* {
+  box-sizing: content-box;
+}
 aside {
   grid-area: aside;
   display: flex;
@@ -42,10 +49,4 @@ aside {
   padding-top: 10vh;
   flex-wrap: wrap;
   align-items: center;
-}
-main {
-  grid-area: main;
-}
-* {
-  box-sizing: content-box;
 }

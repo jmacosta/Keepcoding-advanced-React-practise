@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
+import Root from './Root.jsx';
 import { setAuthorizationHeader } from './api/client.js';
 import { AuthContextProvider } from './pages/auth/context.jsx';
 import configureStore from './store/index.js';
@@ -15,10 +15,10 @@ if (accessToken) {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Root store={store}>
       <AuthContextProvider iniatiallyLogged={!!accessToken}>
         <App />
       </AuthContextProvider>
-    </BrowserRouter>
+    </Root>
   </React.StrictMode>
 );

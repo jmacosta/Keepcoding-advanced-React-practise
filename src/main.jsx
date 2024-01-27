@@ -7,7 +7,7 @@ import { AuthContextProvider } from './pages/auth/context.jsx';
 import configureStore from './store/index.js';
 import storage from './utils/storage.js';
 const accessToken = storage.get('auth');
-const store = configureStore();
+const store = configureStore({ auth: !!accessToken });
 
 if (accessToken) {
   setAuthorizationHeader(accessToken);

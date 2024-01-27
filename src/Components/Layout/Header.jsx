@@ -1,11 +1,15 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/logo_horizontal.svg';
-import { UseAuth } from '../../pages/auth/context';
+import { authLogout } from '../../store/actions';
 import { ConfirmComponent } from '../sharedComponents/ConfirmComponent';
 import styles from './header.module.css';
 const Header = ({ className }) => {
-  const { isLogged, onLogout } = UseAuth();
+  const dispatch = useDispatch();
+  const onLogout = () => {
+    dispatch(authLogout());
+  };
   const [confirm, setconfirm] = useState(false);
   const confirmedLogout = () => {
     setconfirm(true);

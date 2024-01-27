@@ -8,7 +8,7 @@ export const authLogout = () => ({
   type: AUTH_LOGOUT
 });
 
-export const advertsLoaded = (adverts = {
+export const advertsLoaded = adverts => ({
   type: ADVERTS_LOADED,
   payload: adverts
 });

@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../../../Components/sharedComponents/Button';
 import AtIcon from '../../../assets/atIcon.svg?react';
 import LockIcon from '../../../assets/lockIcon.svg?react';
 import Logo from '../../../assets/logo_portrait.svg?react';
-import { UseAuth } from '../context';
+import { authLogin } from '../../../store/actions';
 import './login.css';
 
 function LoginPage() {
-  const { onLogin } = UseAuth();
+  const dispatch = useDispatch();
+
   const iconOptions = {
     fill: '#2e2e2e',
     height: '16',
@@ -22,8 +24,12 @@ function LoginPage() {
   });
   const [error, setError] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
+  const onLogin = () => {
+    dispatch(authLogin());
+  };
   const location = useLocation();
   const navigate = useNavigate();
+
   const to = location?.state?.from || '/';
   const handleSubmit = async event => {
     event.preventDefault();

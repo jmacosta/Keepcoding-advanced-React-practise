@@ -8,17 +8,25 @@ const defaultState = {
   auth: false,
   adverts: []
 };
-export default function reducer(state = defaultState, action) {
+
+export const auth = (state = defaultState.auth, action) => {
   switch (action.type) {
     case AUTH_LOGIN:
-      return { ...state, auth: true };
+      return true;
     case AUTH_LOGOUT:
-      return { ...state, auth: false };
+      return false;
+    default:
+      return state;
+  }
+};
+
+export const adverts = (state = defaultState.adverts, action) => {
+  switch (action.type) {
     case ADVERTS_LOADED:
-      return { ...state, adverts: action.payload };
+      return action.payload;
     case ADVERTS_CREATED:
 
     default:
       return state;
   }
-}
+};

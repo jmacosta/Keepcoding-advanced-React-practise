@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import { setAuthorizationHeader } from './api/client.js';
-
 import { AuthContextProvider } from './pages/auth/context.jsx';
+import configureStore from './store/index.js';
 import storage from './utils/storage.js';
 const accessToken = storage.get('auth');
+const store = configureStore();
+
 if (accessToken) {
   setAuthorizationHeader(accessToken);
 }

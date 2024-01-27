@@ -1,8 +1,10 @@
 import { createStore } from 'redux';
-const defaultState = {
-  auth: false,
-  adverts: []
-};
+import reducer from './reducers';
 
-const reducer = (state, action) => {};
-const store = createStore();
+export default function configureStore() {
+  const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+  return store;
+}

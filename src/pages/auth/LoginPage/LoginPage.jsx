@@ -120,7 +120,7 @@ function LoginPage() {
               onChange={handleRememberMeChange}
               checked={credentials.rememberMe}
             />
-            Recuerdame en este dispositivo
+            Recuérdame en este dispositivo
           </label>
         </div>
         {error && (

@@ -1,24 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { getAdvert } from '../../../api/service';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getAdvertById } from '../../../store/selectors';
 import './advertPage.css';
 import { AdvertDetailCard } from './components/AdvertDetailCard';
 
 function AdvertPage() {
   const { advertId } = useParams();
-  const navigate = useNavigate();
-
-  const [advert, setAdvert] = useState([]);
-  useEffect(() => {
-    getAdvert(advertId)
-      .then(advert => setAdvert(advert))
-      .catch(error => {
-        if (error.status === 404) {
-          navigate('/404');
-        }
-      });
-  }, [navigate, advertId]);
-
+  const advert = useSelector(getAdvertById(advertId));
   return <AdvertDetailCard key={advertId} advert={advert} />;
 }
 export default AdvertPage;

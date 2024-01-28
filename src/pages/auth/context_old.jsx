@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 
-import { login, logout } from './service';
+import { logout } from './service';
 const AuthContext = createContext(false);
 
 export const UseAuth = () => {
@@ -11,7 +11,6 @@ export const UseAuth = () => {
 export const AuthContextProvider = ({ iniatiallyLogged, children }) => {
   const [isLogged, setIsLogged] = useState(iniatiallyLogged);
   const handleLogin = async credentials => {
-    await login(credentials);
     setIsLogged(true);
   };
   const handleLogout = () => {

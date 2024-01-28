@@ -7,6 +7,7 @@ import LockIcon from '../../../assets/lockIcon.svg?react';
 import Logo from '../../../assets/logo_portrait.svg?react';
 import { authLogin } from '../../../store/actions';
 import './login.css';
+import { login } from '../service';
 
 function LoginPage() {
   const dispatch = useDispatch();
@@ -24,7 +25,8 @@ function LoginPage() {
   });
   const [error, setError] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
-  const onLogin = () => {
+  const onLogin = async credentials => {
+    await login(credentials);
     dispatch(authLogin());
   };
   const location = useLocation();

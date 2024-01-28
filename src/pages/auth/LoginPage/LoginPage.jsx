@@ -1,17 +1,22 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../../../Components/sharedComponents/Button';
-import AtIcon from '../../../assets/atIcon.svg?react';
-import LockIcon from '../../../assets/lockIcon.svg?react';
+
 import Logo from '../../../assets/logo_portrait.svg?react';
-import { authLogin } from '../../../store/actions';
-import './login.css';
+import {
+  authLoginFailure,
+  authLoginRequest,
+  authLoginSuccess,
+  uiResetError
+} from '../../../store/actions';
+import { getUi } from '../../../store/selectors';
 import { login } from '../service';
+import AtIcon from './components/AtIcon';
+import LockIcon from './components/LockIcon';
+import './login.css';
 
 function LoginPage() {
-  const dispatch = useDispatch();
-
   const iconOptions = {
     fill: '#2e2e2e',
     height: '16',
@@ -23,27 +28,22 @@ function LoginPage() {
     password: '',
     rememberMe: ''
   });
-  const [error, setError] = useState(null);
-  const [isFetching, setIsFetching] = useState(false);
-  const onLogin = async credentials => {
-    await login(credentials);
-    dispatch(authLogin());
-  };
+
+  const dispatch = useDispatch();
+  const { error, isFetching } = useSelector(getUi);
+  const disabled = !(credentials.email && credentials.password && !isFetching);
   const location = useLocation();
   const navigate = useNavigate();
-
   const to = location?.state?.from || '/';
   const handleSubmit = async event => {
     event.preventDefault();
     try {
-      setIsFetching(true);
-      await onLogin(credentials);
-
+      dispatch(authLoginRequest());
+      await login(credentials);
+      dispatch(authLoginSuccess());
       navigate(to, { replace: true });
     } catch (error) {
-      setError(error);
-    } finally {
-      setIsFetching(false);
+      dispatch(authLoginFailure(error));
     }
   };
   const handleCredentialsChange = event => {
@@ -59,9 +59,9 @@ function LoginPage() {
     });
   };
   const resetError = () => {
-    setError(null);
+    dispatch(uiResetError());
   };
-  const disabled = !(credentials.email && credentials.password && !isFetching);
+
   return (
     <main className='MainLoginPage'>
       <form
@@ -76,12 +76,7 @@ function LoginPage() {
         <p className='heading'>Iniciar sesión</p>
 
         <div className='inputContainer'>
-          <AtIcon
-            fill={iconOptions.fill}
-            height={iconOptions.height}
-            width={iconOptions.width}
-            className={iconOptions.class}
-          />
+          <AtIcon iconOptions={iconOptions} />
           <input
             placeholder='Email'
             id='email'
@@ -94,12 +89,7 @@ function LoginPage() {
         </div>
 
         <div className='inputContainer'>
-          <LockIcon
-            fill={iconOptions.fill}
-            height={iconOptions.height}
-            width={iconOptions.width}
-            className={iconOptions.class}
-          />
+          <LockIcon iconOptions={iconOptions} />
           <input
             placeholder='Password'
             id='password'

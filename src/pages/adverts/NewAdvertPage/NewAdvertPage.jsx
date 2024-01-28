@@ -60,7 +60,7 @@ function NewAdvertPage() {
       const advert = await createAdvert({ ...content });
       navigate(`../${advert.id}`, { relative: 'path' });
     } catch (error) {
-      if (error.status === 40) {
+      if (error.status === 401) {
         navigate('/login');
       }
     } finally {

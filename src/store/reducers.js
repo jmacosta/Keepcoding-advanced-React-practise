@@ -1,7 +1,6 @@
 import {
   ADVERTS_CREATED,
   ADVERTS_LOADED,
-  AUTH_LOGIN_REQUEST,
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGOUT,
   UI_RESET_ERROR
@@ -38,15 +37,14 @@ export const ui = (state = defaultState.ui, action) => {
   if (action.error) {
     return { isFetching: false, error: action.payload };
   }
-  switch (action.type) {
-    case AUTH_LOGIN_REQUEST:
-      return { isFetching: true, error: null };
-    case AUTH_LOGIN_SUCCESS:
-      return { isFetching: false, error: null };
-
-    case UI_RESET_ERROR:
-      return { ...state, error: null };
-    default:
-      return state;
+  if (action.type.endsWith('/request')) {
+    return { isFetching: true, error: null };
   }
+  if (action.type.endsWith('/success')) {
+    return { isFetching: false, error: null };
+  }
+  if (action.type === UI_RESET_ERROR) {
+    return { ...state, error: null };
+  }
+  return state;
 };

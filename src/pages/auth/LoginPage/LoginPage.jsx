@@ -4,14 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../../../Components/sharedComponents/Button';
 
 import Logo from '../../../assets/logo_portrait.svg?react';
-import {
-  authLoginFailure,
-  authLoginRequest,
-  authLoginSuccess,
-  uiResetError
-} from '../../../store/actions';
+import { authLogin, uiResetError } from '../../../store/actions';
 import { getUi } from '../../../store/selectors';
-import { login } from '../service';
 import AtIcon from './components/AtIcon';
 import LockIcon from './components/LockIcon';
 import './login.css';
@@ -34,16 +28,15 @@ function LoginPage() {
   const disabled = !(credentials.email && credentials.password && !isFetching);
   const location = useLocation();
   const navigate = useNavigate();
-  const to = location?.state?.from || '/';
+
   const handleSubmit = async event => {
     event.preventDefault();
     try {
-      dispatch(authLoginRequest());
-      await login(credentials);
-      dispatch(authLoginSuccess());
+      await dispatch(authLogin(credentials));
+      const to = location?.state?.from || '/';
       navigate(to, { replace: true });
     } catch (error) {
-      dispatch(authLoginFailure(error));
+      console.log(error);
     }
   };
   const handleCredentialsChange = event => {

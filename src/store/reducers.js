@@ -1,13 +1,16 @@
 import {
   ADVERTS_CREATED,
-  ADVERTS_LOADED,
+  ADVERTS_LOADED_SUCCESS,
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGOUT,
   UI_RESET_ERROR
 } from './types';
 const defaultState = {
   auth: false,
-  adverts: [],
+  adverts: {
+    areLoaded: false,
+    data: []
+  },
   ui: { isFetching: false, error: null }
 };
 
@@ -24,8 +27,8 @@ export const auth = (state = defaultState.auth, action) => {
 
 export const adverts = (state = defaultState.adverts, action) => {
   switch (action.type) {
-    case ADVERTS_LOADED:
-      return action.payload;
+    case ADVERTS_LOADED_SUCCESS:
+      return { areLoaded: true, data: action.payload };
     case ADVERTS_CREATED:
 
     default:

@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Aside } from '../../../Components/Layout/Aside.jsx';
 import { Main } from '../../../Components/Layout/Main.jsx';
-import { getLatestAdverts } from '../../../api/service.js';
-import { advertsLoaded } from '../../../store/actions.js';
+import { loadAdverts } from '../../../store/actions.js';
 import { getAdverts } from '../../../store/selectors.js';
 import { AdvertCard } from '../AdvertsPage/components/AdvertCard.jsx';
 import { FilterAdverts } from '../AdvertsPage/components/FilterAdverts.jsx';
@@ -17,14 +16,13 @@ const AdvertsPage = () => {
   const [initialAdverts, setInitialAdverts] = useState([]);
   const dispatch = useDispatch();
 
+  // TODO: refactor for apply filters like a array.filter to discrimine adverts
   const onFilterAdverts = filteredAdverts => {
     setAdverts(filteredAdverts);
   };
   useEffect(() => {
-    getLatestAdverts().then(adverts => {
-      dispatch(advertsLoaded(adverts));
-    });
-  }, []);
+    dispatch(loadAdverts());
+  }, [dispatch]);
 
   return adverts.length ? (
     <>

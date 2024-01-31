@@ -1,7 +1,10 @@
-import { getLatestAdverts } from '../api/service';
+import { getAdvert, getLatestAdverts } from '../api/service';
 import { login } from '../pages/auth/service';
-import { areAdvertsLoaded } from './selectors';
+import { areAdvertsLoaded, getAdvertById } from './selectors';
 import {
+  ADVERTS_DETAIL_FAILURE,
+  ADVERTS_DETAIL_REQUEST,
+  ADVERTS_DETAIL_SUCCESS,
   ADVERTS_LOADED_FAILURE,
   ADVERTS_LOADED_REQUEST,
   ADVERTS_LOADED_SUCCESS,
@@ -73,6 +76,37 @@ export const loadAdverts = () => {
       dispatch(advertsLoadedSuccess(adverts));
     } catch (error) {
       dispatch(advertsLoadedFailure(error));
+      throw error;
+    }
+  };
+};
+
+export const advertsDetailSuccess = advert => ({
+  type: ADVERTS_DETAIL_SUCCESS,
+  payload: advert
+});
+
+export const advertsDetailRequest = () => ({
+  type: ADVERTS_DETAIL_REQUEST
+});
+
+export const advertsDetailFailure = error => ({
+  type: ADVERTS_DETAIL_FAILURE,
+  error: true,
+  payload: error
+});
+
+export const detailAdverts = advertId => {
+  return async function (dispatch, getstate) {
+    if (getAdvertById(advertId)(getstate())) {
+      return;
+    }
+    try {
+      dispatch(advertsDetailRequest());
+      const advert = await getAdvert(advertId);
+      dispatch(advertsDetailSuccess(advert));
+    } catch (error) {
+      dispatch(advertsDetailFailure(error));
       throw error;
     }
   };

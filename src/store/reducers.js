@@ -1,5 +1,6 @@
 import {
   ADVERTS_CREATED,
+  ADVERTS_DETAIL_SUCCESS,
   ADVERTS_LOADED_SUCCESS,
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGOUT,
@@ -29,6 +30,9 @@ export const adverts = (state = defaultState.adverts, action) => {
   switch (action.type) {
     case ADVERTS_LOADED_SUCCESS:
       return { areLoaded: true, data: action.payload };
+
+    case ADVERTS_DETAIL_SUCCESS:
+      return { areLoaded: false, data: [action.payload] };
     case ADVERTS_CREATED:
 
     default:

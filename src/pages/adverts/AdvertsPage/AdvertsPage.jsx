@@ -7,6 +7,7 @@ import { loadAdverts } from '../../../store/actions.js';
 import { getAdverts } from '../../../store/selectors.js';
 import { AdvertCard } from '../AdvertsPage/components/AdvertCard.jsx';
 import { FilterAdverts } from '../AdvertsPage/components/FilterAdverts.jsx';
+
 import './advertspage.css';
 
 const AdvertsPage = () => {

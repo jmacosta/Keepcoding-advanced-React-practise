@@ -1,7 +1,10 @@
-import { getAdvert, getLatestAdverts } from '../api/service';
+import { createAdvert, getAdvert, getLatestAdverts } from '../api/service';
 import { login } from '../pages/auth/service';
 import { areAdvertsLoaded, getAdvertById } from './selectors';
 import {
+  ADVERTS_CREATED_FAILURE,
+  ADVERTS_CREATED_REQUEST,
+  ADVERTS_CREATED_SUCCESS,
   ADVERTS_DETAIL_FAILURE,
   ADVERTS_DETAIL_REQUEST,
   ADVERTS_DETAIL_SUCCESS,
@@ -107,6 +110,34 @@ export const detailAdverts = advertId => {
       dispatch(advertsDetailSuccess(advert));
     } catch (error) {
       dispatch(advertsDetailFailure(error));
+      throw error;
+    }
+  };
+};
+
+export const advertsCreatedSuccess = advert => ({
+  type: ADVERTS_CREATED_SUCCESS,
+  payload: advert
+});
+
+export const advertsCreatedRequest = () => ({
+  type: ADVERTS_CREATED_REQUEST
+});
+
+export const advertsCreatedFailure = error => ({
+  type: ADVERTS_CREATED_FAILURE,
+  error: true,
+  payload: error
+});
+
+export const createdAdverts = advertData => {
+  return async function (dispatch, getstate) {
+    try {
+      dispatch(advertsCreatedRequest());
+      const createdAdvert = await createAdvert(advertData);
+      dispatch(advertsCreatedSuccess(createdAdvert));
+    } catch (error) {
+      dispatch(advertsCreatedFailure(error));
       throw error;
     }
   };

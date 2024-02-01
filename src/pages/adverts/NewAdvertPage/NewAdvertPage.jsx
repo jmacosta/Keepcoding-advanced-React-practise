@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../../Components/sharedComponents/Button';
-import { createAdvert } from '../../../api/service';
 import searchIcon from '../../../assets/search_icon.svg';
 import sellIcon from '../../../assets/sell_icon.svg';
+import { createdAdverts } from '../../../store/actions';
+import { getUi } from '../../../store/selectors';
 import './NewAdvertPage.css';
 function NewAdvertPage() {
   const [content, setContent] = useState({
@@ -13,7 +15,8 @@ function NewAdvertPage() {
     tags: [],
     photo: null
   });
-  const [isFetching, setIsFetching] = useState(false);
+  const { isFetching } = useSelector(getUi);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handlersNewAdvert = {
     photo(event) {
@@ -55,17 +58,10 @@ function NewAdvertPage() {
   };
   const handleSubmit = async event => {
     event.preventDefault();
-    try {
-      setIsFetching(true);
-      const advert = await createAdvert({ ...content });
-      navigate(`../${advert.id}`, { relative: 'path' });
-    } catch (error) {
-      if (error.status === 401) {
-        navigate('/login');
-      }
-    } finally {
-      setIsFetching(false);
-    }
+
+    const advert = await dispatch(createdAdverts({ ...content }));
+    //TODO: add Router logic to actions dispatch
+    navigate(`../${advert.id}`, { relative: 'path' });
   };
   const isDisabled = !(
     content.name &&

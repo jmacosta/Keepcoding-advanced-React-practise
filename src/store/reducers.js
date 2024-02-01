@@ -1,5 +1,5 @@
 import {
-  ADVERTS_CREATED,
+  ADVERTS_CREATED_SUCCESS,
   ADVERTS_DETAIL_SUCCESS,
   ADVERTS_LOADED_SUCCESS,
   AUTH_LOGIN_SUCCESS,
@@ -33,8 +33,8 @@ export const adverts = (state = defaultState.adverts, action) => {
 
     case ADVERTS_DETAIL_SUCCESS:
       return { areLoaded: false, data: [action.payload] };
-    case ADVERTS_CREATED:
-
+    case ADVERTS_CREATED_SUCCESS:
+      return { ...state, data: [action.payload, ...state.data] };
     default:
       return state;
   }

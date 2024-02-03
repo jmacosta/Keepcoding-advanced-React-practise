@@ -59,9 +59,10 @@ function NewAdvertPage() {
   const handleSubmit = async event => {
     event.preventDefault();
 
-    const advert = await dispatch(createdAdverts({ ...content }));
-    //TODO: add Router logic to actions dispatch
-    navigate(`../${advert.id}`, { relative: 'path' });
+    await dispatch(createdAdverts({ ...content }));
+
+    const to = location?.state?.from || '/';
+    navigate(to, { replace: true });
   };
   const isDisabled = !(
     content.name &&

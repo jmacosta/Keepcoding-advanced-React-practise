@@ -1,5 +1,6 @@
 import client from './client';
 const advertsUrl = '/api/v1/adverts';
+const advertsTags = '/api/v1/adverts/tags';
 
 export const getLatestAdverts = () => {
   return client.get(advertsUrl);
@@ -15,4 +16,7 @@ export const getAdvert = advertId => {
 
 export const deleteAdvert = advertId => {
   return client.delete(`${advertsUrl}/${advertId}`);
+};
+export const getLatestTags = () => {
+  return client.get(advertsTags);
 };

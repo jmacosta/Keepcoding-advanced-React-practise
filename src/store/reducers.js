@@ -4,6 +4,7 @@ import {
   ADVERTS_LOADED_SUCCESS,
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGOUT,
+  TAGS_LOADED_SUCCESS,
   UI_RESET_ERROR
 } from './types';
 const defaultState = {
@@ -12,7 +13,11 @@ const defaultState = {
     areLoaded: false,
     data: []
   },
-  ui: { isFetching: false, error: null }
+  ui: { isFetching: false, error: null },
+  tags: {
+    areLoaded: false,
+    data: []
+  }
 };
 
 export const auth = (state = defaultState.auth, action) => {
@@ -54,4 +59,13 @@ export const ui = (state = defaultState.ui, action) => {
     return { ...state, error: null };
   }
   return state;
+};
+
+export const tags = (state = defaultState.tags, action) => {
+  switch (action.type) {
+    case TAGS_LOADED_SUCCESS:
+      return { areLoaded: true, data: action.payload };
+    default:
+      return state;
+  }
 };

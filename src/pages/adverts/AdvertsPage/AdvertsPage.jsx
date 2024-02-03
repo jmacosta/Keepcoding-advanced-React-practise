@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Aside } from '../../../Components/Layout/Aside.jsx';
 import { Main } from '../../../Components/Layout/Main.jsx';
-import { loadAdverts } from '../../../store/actions.js';
+import { loadAdverts, loadTags } from '../../../store/actions.js';
 import { getAdverts } from '../../../store/selectors.js';
 import { AdvertCard } from '../AdvertsPage/components/AdvertCard.jsx';
 import { FilterAdverts } from '../AdvertsPage/components/FilterAdverts.jsx';
@@ -23,6 +23,7 @@ const AdvertsPage = () => {
   };
   useEffect(() => {
     dispatch(loadAdverts());
+    dispatch(loadTags());
   }, [dispatch]);
 
   return adverts.length ? (

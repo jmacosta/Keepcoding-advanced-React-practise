@@ -18,4 +18,6 @@ export const ADVERTS_CREATED_REQUEST = 'adverts/created/request';
 export const ADVERTS_CREATED_SUCCESS = 'adverts/created/success';
 export const ADVERTS_CREATED_FAILURE = 'adverts/created/failure';
 
-export const ADVERTS_CREATED = 'adverts/created';
+export const TAGS_LOADED_REQUEST = 'tags/loaded/request';
+export const TAGS_LOADED_SUCCESS = 'tags/loaded/success';
+export const TAGS_LOADED_FAILURE = 'tags/loaded/failure';

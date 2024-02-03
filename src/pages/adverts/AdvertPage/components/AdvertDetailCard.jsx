@@ -6,17 +6,18 @@ import noImage from '../../../../assets/no-image.jpg';
 import { deleteAdverts } from '../../../../store/actions';
 import { sellSearchIcon } from '../../../../utils/sellSearchIcon';
 export const AdvertDetailCard = ({ advert = {} }) => {
-  const { tags = [], sale, name, photo, price } = advert;
-  const [imageError, setImageError] = useState(false);
-  const [confirm, setconfirmed] = useState(false);
+  const { id, tags = [], sale, name, photo, price } = advert;
+  const [confirm, setConfirmed] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const resetFunction = () => {
-    setconfirmed(false);
+    setConfirmed(false);
   };
-  const id = advert.id;
-  const deletethisAdvert = async id => {
-    await dispatch(deleteAdverts(id));
+  const deleteThisAdvert = async id => {
+    try {
+      await dispatch(deleteAdverts(id));
+    } catch (error) {}
+
     navigate('/');
   };
 
@@ -45,7 +46,6 @@ export const AdvertDetailCard = ({ advert = {} }) => {
             <div className='modal-content price' id='price'>
               <span className='price'>{`${price}€`}</span>
             </div>
-
             <div className='modal-content tag' id='tags'>
               {tags.map((tag, index) => (
                 <span key={index} className='tags'>
@@ -59,7 +59,7 @@ export const AdvertDetailCard = ({ advert = {} }) => {
               className='button button--primary '
               id='deleteButton'
               onClick={() => {
-                setconfirmed(true);
+                setConfirmed(true);
               }}
             >
               Borrar Anuncio
@@ -68,7 +68,7 @@ export const AdvertDetailCard = ({ advert = {} }) => {
         </div>
         {confirm && (
           <ConfirmComponent
-            execFunction={deletethisAdvert}
+            execFunction={deleteThisAdvert}
             resetFunction={resetFunction}
             parameter={id}
           >

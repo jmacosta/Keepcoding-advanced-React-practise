@@ -1,21 +1,22 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ConfirmComponent } from '../../../../Components/sharedComponents/ConfirmComponent';
-import { deleteAdvert } from '../../../../api/service';
 import noImage from '../../../../assets/no-image.jpg';
+import { deleteAdverts } from '../../../../store/actions';
 import { sellSearchIcon } from '../../../../utils/sellSearchIcon';
 export const AdvertDetailCard = ({ advert = {} }) => {
   const { tags = [], sale, name, photo, price } = advert;
   const [imageError, setImageError] = useState(false);
   const [confirm, setconfirmed] = useState(false);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const resetFunction = () => {
     setconfirmed(false);
   };
   const id = advert.id;
   const deletethisAdvert = async id => {
-    await deleteAdvert(id);
+    await dispatch(deleteAdverts(id));
     navigate('/');
   };
 

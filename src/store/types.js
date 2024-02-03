@@ -21,3 +21,7 @@ export const ADVERTS_CREATED_FAILURE = 'adverts/created/failure';
 export const TAGS_LOADED_REQUEST = 'tags/loaded/request';
 export const TAGS_LOADED_SUCCESS = 'tags/loaded/success';
 export const TAGS_LOADED_FAILURE = 'tags/loaded/failure';
+
+export const ADVERTS_DELETE_REQUEST = 'adverts/delete/request';
+export const ADVERTS_DELETE_SUCCESS = 'adverts/delete/success';
+export const ADVERTS_DELETE_FAILURE = 'adverts/delete/failure';

@@ -1,5 +1,6 @@
 import {
   createAdvert,
+  deleteAdvert,
   getAdvert,
   getLatestAdverts,
   getLatestTags
@@ -10,6 +11,9 @@ import {
   ADVERTS_CREATED_FAILURE,
   ADVERTS_CREATED_REQUEST,
   ADVERTS_CREATED_SUCCESS,
+  ADVERTS_DELETE_FAILURE,
+  ADVERTS_DELETE_REQUEST,
+  ADVERTS_DELETE_SUCCESS,
   ADVERTS_DETAIL_FAILURE,
   ADVERTS_DETAIL_REQUEST,
   ADVERTS_DETAIL_SUCCESS,
@@ -177,6 +181,33 @@ export const loadTags = () => {
       dispatch(tagsLoadedSuccess(tags));
     } catch (error) {
       dispatch(tagsLoadedFailure(error));
+      throw error;
+    }
+  };
+};
+
+export const advertsDeleteSuccess = () => ({
+  type: ADVERTS_DELETE_SUCCESS
+});
+
+export const advertsDeleteRequest = () => ({
+  type: ADVERTS_DELETE_REQUEST
+});
+
+export const advertsDeleteFailure = error => ({
+  type: ADVERTS_DELETE_FAILURE,
+  error: true,
+  payload: error
+});
+
+export const deleteAdverts = advertId => {
+  return async function (dispatch, getstate) {
+    try {
+      dispatch(advertsDeleteRequest());
+      await deleteAdvert(advertId);
+      dispatch(advertsDeleteSuccess());
+    } catch (error) {
+      dispatch(advertsDeleteFailure(error));
       throw error;
     }
   };

@@ -11,7 +11,7 @@ describe('authLoginSuccess', () => {
   });
 });
 describe('advertsLoadedSuccess', () => {
-  it('should return a "ADVERTS_LOADED_SUCCESS" action with payload', () => {
+  test('should return a "ADVERTS_LOADED_SUCCESS" action with payload', () => {
     const adverts = 'adverts';
     const expectedAction = {
       type: ADVERTS_LOADED_SUCCESS,

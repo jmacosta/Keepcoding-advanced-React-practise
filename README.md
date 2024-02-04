@@ -35,7 +35,7 @@ Se implementan rutas públicas y protegidas, como las relacionadas con la autent
 
 Para ejecutar este proyecto localmente:
 
-1. Clona el repositorio: `git clone https://github.com/jmacosta/keepcoding_wallaReact`
+1. Clona el repositorio: `git clone https://github.com/jmacosta/Keepcoding-advanced-React-practise.git` 
 2. Instala las dependencias: `npm install`
 3. Inicia el servidor de desarrollo: `npm run dev`
 
@@ -44,6 +44,9 @@ Para ejecutar este proyecto localmente:
 - **react**: Librería principal para construir interfaces de usuario.
 - **react-router-dom**: Manejo de enrutamiento y navegación.
 - **axios**: Llamadas a la api externa.
+- **Redux**: Gestión de estado global
+- **Jest**: Testing de funciones
+- **testing-library/react**: Testing de componentes
 
 
 ## Notas Importantes

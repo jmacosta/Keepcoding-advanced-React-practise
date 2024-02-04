@@ -2,12 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../../../Components/sharedComponents/Button';
-
-import Logo from '../../../assets/logo_portrait.svg?react';
 import { authLogin, uiResetError } from '../../../store/actions';
 import { getUi } from '../../../store/selectors';
-import AtIcon from './components/AtIcon';
-import LockIcon from './components/LockIcon';
 import './login.css';
 
 function LoginPage() {
@@ -63,13 +59,11 @@ function LoginPage() {
         id='form-login'
         onSubmit={handleSubmit}
       >
-        <div className='form_main__logo'>
-          <Logo height={'10vh'} />
-        </div>
+        <div className='form_main__logo'>{/* <Logo height={'10vh'} /> */}</div>
         <p className='heading'>Iniciar sesión</p>
 
         <div className='inputContainer'>
-          <AtIcon iconOptions={iconOptions} />
+          {/* {<AtIcon iconOptions={iconOptions} />} */}
           <input
             placeholder='Email'
             id='email'
@@ -82,7 +76,7 @@ function LoginPage() {
         </div>
 
         <div className='inputContainer'>
-          <LockIcon iconOptions={iconOptions} />
+          {/* <LockIcon iconOptions={iconOptions} /> */}
           <input
             placeholder='Password'
             id='password'

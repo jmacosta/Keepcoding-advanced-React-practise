@@ -8,7 +8,7 @@ import {
   TAGS_LOADED_SUCCESS,
   UI_RESET_ERROR
 } from './types';
-const defaultState = {
+export const defaultState = {
   auth: false,
   adverts: {
     areLoaded: false,
